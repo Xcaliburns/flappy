@@ -1,3 +1,3 @@
 # flappy
 
-#flppy bird clone made with unity
+#flappy bird clone made with unity
