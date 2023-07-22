@@ -42,6 +42,15 @@ public class Player : MonoBehaviour
         transform.position += direction * Time.deltaTime;
     }
 
+    private void OnEnable()
+    {
+        Vector3 position = transform.position;
+        position.y = 0f;
+        transform.position = position;
+        direction = Vector3.zero;
+
+    }
+
     private void AnimateSprite()
     {
         spriteIndex++;
@@ -52,4 +61,14 @@ public class Player : MonoBehaviour
         spriteRenderer.sprite = sprites[spriteIndex];
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "obstacle") {
+           
+            FindObjectOfType<GameManager>().GameOver();
+        }
+        else if(other.gameObject.tag == "scoretrigger") {
+            FindObjectOfType<GameManager>().IncreaseScore();
+        }
+    }
 }
